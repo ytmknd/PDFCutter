@@ -232,7 +232,6 @@ async function downloadModifiedPDF() {
         URL.revokeObjectURL(url);
         
         showLoading(false);
-        alert('PDFの保存が完了しました!');
         
     } catch (error) {
         console.error('PDF処理エラー:', error);
