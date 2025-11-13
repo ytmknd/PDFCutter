@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Cutter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📄 PDF Cutter</h1>
+            <p class="subtitle">PDFファイルから不要なページを削除（ブラウザ内で完結・サーバー不要）</p>
+        </header>
+
+        <main>
+            <!-- ドロップゾーン -->
+            <div id="dropZone" class="drop-zone">
+                <div class="drop-zone-content">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <p class="drop-zone-text">PDFファイルをドラッグ&ドロップ</p>
+                    <p class="drop-zone-or">または</p>
+                    <label for="fileInput" class="file-button">ファイルを選択</label>
+                    <input type="file" id="fileInput" accept=".pdf" hidden>
+                </div>
+            </div>
+
+            <!-- ファイル情報 -->
+            <div id="fileInfo" class="file-info hidden">
+                <div class="info-header">
+                    <div>
+                        <h3 id="fileName"></h3>
+                        <p id="fileDetails"></p>
+                    </div>
+                    <button id="resetBtn" class="btn-secondary">新しいファイルを選択</button>
+                </div>
+            </div>
+
+            <!-- ページグリッド -->
+            <div id="pagesContainer" class="pages-container hidden">
+                <div class="controls">
+                    <div class="selection-info">
+                        <span id="selectionCount">削除するページ: 0ページ</span>
+                    </div>
+                    <div class="action-buttons">
+                        <button id="selectAllBtn" class="btn-secondary">すべて選択</button>
+                        <button id="deselectAllBtn" class="btn-secondary">選択解除</button>
+                        <button id="downloadBtn" class="btn-primary">PDFを保存</button>
+                        <button id="splitBtn" class="btn-split">残ページを個別保存</button>
+                    </div>
+                </div>
+                <div id="pagesGrid" class="pages-grid"></div>
+            </div>
+
+            <!-- ローディング -->
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>処理中...</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>ブラウザ内で処理されます。ファイルはサーバーにアップロードされません。</p>
+        </footer>
+    </div>
+
+    <!-- PDF.js と pdf-lib を CDN から読み込み -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
